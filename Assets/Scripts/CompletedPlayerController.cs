@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CompletedPlayerController : MonoBehaviour
@@ -39,5 +40,15 @@ public class CompletedPlayerController : MonoBehaviour
         velocity.z = forwardSpeed;
 
         body.velocity = velocity;
+    }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        Vector3 velocity = body.velocity;
+        // If the game object that we are colliding with has the "Wall" tag...
+        if (collision.gameObject.tag == "JumpPad")
+        {
+            velocity.y = 5;
+        }
     }
 }
